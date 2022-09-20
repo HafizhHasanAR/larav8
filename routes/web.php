@@ -27,9 +27,9 @@ Route::get('/', function () {
 
 
 
-Route::get('/success_checkout', function () {
-    return view('success_checkout');
-})->name('success_checkout');
+// Route::get('/success_checkout', function () {
+//     return view('success_checkout');
+// })->name('success_checkout');
 
 // sosialite routes
 Route::get('sign-in-google',[UserController::class, 'google'])->name('user.login.google');
