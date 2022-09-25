@@ -7,7 +7,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Auth;
 use Mail;
-use App\Mail\User\AfterRegister;
+use App\Mail\Checkout\AfterCheckout;
 
 class UserController extends Controller
 {

@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 
 // Route::get('/success_checkout', function () {
-//     return view('success_checkout');
+//     return view('success_checkout'); 
 // })->name('success_checkout');
 
 // sosialite routes
@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function() {
     
     //user dashboard
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('dashboard/checkout/invoice/checkout', [CheckoutController::class, 'invoice'])->name('user.checkout.invoice');
 
 });
 

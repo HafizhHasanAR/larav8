@@ -7,7 +7,9 @@ use App\Models\Camp;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
 use Auth;
+use Mail;
 use App\Http\Requests\User\Checkout\Store;
+use App\Mail\Checkout\AfterCheckout;
 
 
 class CheckoutController extends Controller
@@ -31,7 +33,7 @@ class CheckoutController extends Controller
     {  
         if ($camp->isRegistered ){
             $request->session()->flash('error', "you already registered on {$camp->title} camp.");
-            return redirect(route('user.dashboard'));
+            return redirect(route('dashboard'));
             
         }
         return view('checkout.create', [
@@ -48,6 +50,7 @@ class CheckoutController extends Controller
     public function store(store $request, Camp $camp)
     {
         
+        
        //mapping request data
        $data = $request->all();
        $data['user_id'] = Auth::id();
@@ -62,6 +65,10 @@ class CheckoutController extends Controller
 
        //create checkout
        $checkout = Checkout::create($data);
+
+       //send Email
+       Mail::to(Auth::user()->email)->send(new AfterCheckout($checkout)); 
+
        return redirect(route('checkout.success'));
     }
 
@@ -107,10 +114,14 @@ class CheckoutController extends Controller
      */
     public function destroy(Checkout $checkout)
     {
-        //
+        // 
     }
 
     public function success(){
         return view('checkout.success');
     }
+
+    public function invoice(Checkout $checkout){
+        return $checkout;
+    } 
 }
