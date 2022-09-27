@@ -40,7 +40,7 @@
                                         <td>
                                             {{-- <strong>{{$chekcout->payment_status}}</strong> --}}
                                             @if(!$checkout->is_paid)
-                                                 <form action="{{route('admin.chekcout.update', $checkout->id)}}" method="post">
+                                                 <form action="{{route('admin.checkout.update', $checkout->id)}}" method="post">
                                             @csrf
                                             <button class="btn btn-primary btn-sm">Set To Paid</button>
                                                   </form>
