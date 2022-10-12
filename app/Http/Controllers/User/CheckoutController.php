@@ -207,8 +207,7 @@ class CheckoutController extends Controller
                 $checkout->payment_status = 'pending';
             }
             else if ($fraud == 'accept') {
-                // TODO Set payment status in merchant's database to 'success'
-                $checkout->payment_status = 'paid';
+                // TODO Set payment status in merchan 
             }
         }
         else if ($transaction_status == 'cancel') {
